@@ -169,7 +169,7 @@ void handleNotFound(){
 void setup_server_wifi()
 {
   
-  WiFi.begin("ssid", "password");
+  WiFi.begin("Nom Reseau", "Password");
 
   Serial.print("Connecting");
   while (WiFi.status() != WL_CONNECTED)
