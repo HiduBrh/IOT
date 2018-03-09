@@ -91,30 +91,30 @@ int next_step(float dx, float dy, float dz){
   
   //obtenir l axe en fonction du max (valeur absolu)
   if(abs(dx)>=abs(dy)){
-  if(abs(dx)>=abs(dz)){
-    dir_axis=0;
-    max_value=dx;
+    if(abs(dx)>=abs(dz)){
+      dir_axis=0;
+      max_value=dx;
+    }else{
+      dir_axis=2;
+      max_value=dz;
+    }
   }else{
-    dir_axis=2;
-    max_value=dz;
-  }
-  }else{
-  if(abs(dy)>=abs(dz)){
-    dir_axis=1;
-    max_value=dy;
-  }else{
-    dir_axis=2;
-    max_value=dz;
-  }
+    if(abs(dy)>=abs(dz)){
+      dir_axis=1;
+      max_value=dy;
+    }else{
+      dir_axis=2;
+      max_value=dz;
+    }
   }
   
   // obtention de la direcction en fonction du signe du max
   if(abs(max_value)>BRUIT){
-  if(max_value<0)
-    opposite=3;
-  else
-    opposite=0;
-    
+    if(max_value<0)
+      opposite=3;
+    else
+      opposite=0;
+      
   dir_played = dir_axis+opposite; // direction joue
   if(abs(max_value)>abs(max_v)){
     max_v=abs(max_value);
@@ -122,11 +122,11 @@ int next_step(float dx, float dy, float dz){
   }
   if((counter % counter_scale)==0){
     if(dir_pl==next_dir){
-    level++;
-    generate_next_dir();
-    return 1;
+      level++;
+      generate_next_dir();
+      return 1;
     }else
-    return -1;
+      return -1;
     }
   }else
     return 0;
