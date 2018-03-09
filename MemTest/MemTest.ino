@@ -124,6 +124,7 @@ int next_step(float dx, float dy, float dz){
     if(dir_pl==next_dir){
       level++;
       generate_next_dir();
+      delay(4000); //pause pour repositionner l'appareil
       return 1;
     }else
       return -1;
