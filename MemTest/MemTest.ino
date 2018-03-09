@@ -32,7 +32,7 @@ int dir_pl=-1;
 float max_v=0.;
 unsigned long begin_time, end_time;
 
-String PageStart ="<!DOCTYPE html><html lang=\"en\"><head><title>A really bad game</title><meta charset=\"utf-8\"><style> body { background-color: #fffff; font-family: Arial, Helvetica, Sans-Serif; Color: #000088; }</style></head><body><h1>This is the site of a really bad game</h1><p>To start the game, click on the button start</p><form action='/' method = 'POST'><input type = \"submit\" name = \"start\" value = 'start'><div class=\"container3\"><p>stats</p></div></body></html>"; 
+String PageStart ="<!DOCTYPE html><html lang=\"en\"><head><title>MemTest</title><meta charset=\"utf-8\"><style> body { background-color: #fffff; font-family: Arial, Helvetica, Sans-Serif; Color: #000088; }</style></head><body><h1>MemTest</h1><p>To start the game, click on the button start</p><form action='/' method = 'POST'><input type = \"submit\" name = \"Start\" value = 'start'></form></body></html>"; 
 
 void setup() {
   Wire.begin();
@@ -69,7 +69,6 @@ void initGame(float x, float y, float z){
   for (int i = 0; i < LED_NUM; i++ ) { //eteindre les leds
   strip.setPixelColor(i, 0, 0, 0);
   }
-  begin_time = now();
   }
 
   
@@ -135,7 +134,7 @@ int next_step(float dx, float dy, float dz){
 
   
 void handleRoot() {
-  if(server.hasArg("start")){
+  if(server.hasArg("Start")){
   handleSubmit();
   }else{
   server.send(200, "text/html",PageStart);
@@ -146,6 +145,7 @@ void handleRoot() {
 void handleSubmit(){
   initGame(0,0,0);
   generate_next_dir();
+  begin_time = millis();
   loop_game();
   server.send(200,"text/html", createStatsPage());
 }
@@ -217,7 +217,7 @@ void loop_game(){
       score=level;
       initGame(0,0,0);
       game_end=1;
-      end_time = now();
+      end_time = millis();
       Serial.print(" game over \n");
     }
   }else{ //initialiser avec les valeurs de la premiere prise avec l accelerometre
@@ -234,9 +234,7 @@ void loop_game(){
 }
 
 String createStatsPage(){
-  Serial.print("end time"+end_time);
-  Serial.print("begin time"+begin_time);
   int elapsed_time = (int)((end_time - begin_time)/1000);
-  return String("<!DOCTYPE html><html lang=\"en\"><head><title>Stats</title><meta charset=\"utf-8\"><style> body { background-color: #fffff; font-family: Arial, Helvetica, Sans-Serif; Color: #000088; }</style></head><body><h1>Score: ")+String(score)+"</h1><h1>elapsed time: "+String(end_time)+" hhh"+String(begin_time)+" seconds</h1></body></html>";
+  return String("<!DOCTYPE html><html lang=\"en\"><head><title>MemTest</title><meta charset=\"utf-8\"><style> body { background-color: #fffff; font-family: Arial, Helvetica, Sans-Serif; Color: #000088; }</style></head><body><h1>Score: ")+String(score)+"</h1><h1>elapsed time: "+String(elapsed_time)+" seconds</h1><p>To play again, click on the button start</p><form action='/' method = 'POST'><input type = \"submit\" name = \"Start\" value = 'start'></form></body></html>";
 }
 
