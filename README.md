@@ -8,9 +8,11 @@ Chaque couleur correspond à une direction,du coup, il y a 6 direction possibles
 
 Une fois le jeu est lancer la première LED s’allume avec une couleur.
 
-Il faudra deviner la bonne direction pour faire allumer la LED suivante qui allume à son tour une couleur 
+Il faudra deviner la bonne direction pour faire allumer la LED suivante qui allume à son tour une couleur.
 
-La but de Memtest est tester la mémoire du joueur et voir le meilleur score de celui qui parvient à allumer les 8 LEDs
+Vous avez 4 secondes après chaque tour pour reposistioner.
+
+La but de Memtest est tester la mémoire du joueur et voir le meilleur score de celui qui parvient à allumer les 8 LEDs.
 </p>
 
 
